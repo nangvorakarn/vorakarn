@@ -1,0 +1,17 @@
+services:
+    shopshop:
+        build:
+            context: '.'
+        container_name: shopshop
+        restart: always
+        ports:
+            - 8081:80
+
+        environment:
+            - APACHE_RUN_USER=app #1000
+        volumes:
+            - .:/var/www/html
+
+
+
+

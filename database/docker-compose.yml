@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0                       # Use MySQL version 8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password    # Set the root password for MySQL
+      MYSQL_DATABASE: shopshop            # Create a default database
+      MYSQL_USER: user                         # Create a user
+      MYSQL_PASSWORD: user_password            # Set the user password
+    ports:
+      - '8306:3306'                            # Map MySQL port
+    volumes:
+      - ./db_data:/var/lib/mysql                 # Persist database data
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql                          # Link to the MySQL service
+      PMA_PORT: 3306                           # Default port for MySQL
+ 
+    ports:
+      - '9080:80'                              # Expose phpMyAdmin on port 8080
+
